@@ -8,8 +8,8 @@ import (
 
 	"github.com/zdnscloud/cement/netradix"
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 const (

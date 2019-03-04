@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"vanguard/util"
+	"github.com/zdnscloud/vanguard/util"
 )
 
 type LocalPolicyType string

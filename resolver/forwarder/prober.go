@@ -8,7 +8,7 @@ import (
 	"github.com/zdnscloud/cement/set"
 	"github.com/zdnscloud/cement/workerpool"
 	"github.com/zdnscloud/g53"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 const probeRoutineCount = 10

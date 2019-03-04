@@ -3,8 +3,8 @@ package viewselector
 import (
 	"errors"
 
-	"vanguard/config"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 const (

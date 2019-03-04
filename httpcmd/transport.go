@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/zdnscloud/cement/rest"
-	"vanguard/metrics"
+	"github.com/zdnscloud/vanguard/metrics"
 )
 
 type HttpTransport struct {

@@ -7,7 +7,7 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 const (

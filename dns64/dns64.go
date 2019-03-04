@@ -4,9 +4,9 @@ import (
 	"sync"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type DNS64 struct {

@@ -6,9 +6,9 @@ import (
 
 	"github.com/zdnscloud/g53"
 	util "github.com/zdnscloud/g53/util"
-	"vanguard/logger"
-	z "vanguard/resolver/auth/zone"
-	"vanguard/resolver/auth/zone/memoryzone"
+	"github.com/zdnscloud/vanguard/logger"
+	z "github.com/zdnscloud/vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone/memoryzone"
 )
 
 func loadZone(origin *g53.Name, content string) z.Zone {

@@ -4,9 +4,9 @@ import (
 	"sync"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/httpcmd"
-	view "vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	view "github.com/zdnscloud/vanguard/viewselector"
 )
 
 const (

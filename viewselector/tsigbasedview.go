@@ -2,8 +2,8 @@ package viewselector
 
 import (
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 type TSIGKey struct {

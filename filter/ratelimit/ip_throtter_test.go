@@ -6,8 +6,8 @@ import (
 	"time"
 
 	ut "github.com/zdnscloud/cement/unittest"
-	"vanguard/config"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 func TestIPFilter(t *testing.T) {

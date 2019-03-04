@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/zdnscloud/cement/netradix"
-	"vanguard/config"
+	"github.com/zdnscloud/vanguard/config"
 )
 
 type Acl struct {

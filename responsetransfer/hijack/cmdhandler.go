@@ -3,8 +3,8 @@ package hijack
 import (
 	"strings"
 
-	"vanguard/httpcmd"
-	ld "vanguard/localdata"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	ld "github.com/zdnscloud/vanguard/localdata"
 )
 
 type AddRedirectRR struct {

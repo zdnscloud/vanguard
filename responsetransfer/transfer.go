@@ -1,11 +1,11 @@
 package responsetransfer
 
 import (
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/responsetransfer/aaaafilter"
-	"vanguard/responsetransfer/hijack"
-	"vanguard/responsetransfer/sortlist"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/responsetransfer/aaaafilter"
+	"github.com/zdnscloud/vanguard/responsetransfer/hijack"
+	"github.com/zdnscloud/vanguard/responsetransfer/sortlist"
 )
 
 const (

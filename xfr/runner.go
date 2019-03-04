@@ -6,10 +6,10 @@ import (
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
 	"github.com/zdnscloud/g53/util"
-	"vanguard/core"
-	"vanguard/logger"
-	"vanguard/resolver/auth"
-	"vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/auth"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
 type xfrType string

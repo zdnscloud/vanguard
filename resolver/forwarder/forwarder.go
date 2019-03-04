@@ -2,12 +2,12 @@ package forwarder
 
 import (
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/logger"
-	"vanguard/resolver/chain"
-	"vanguard/resolver/querysource"
-	"vanguard/util"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/chain"
+	"github.com/zdnscloud/vanguard/resolver/querysource"
+	"github.com/zdnscloud/vanguard/util"
 )
 
 type Forwarder struct {

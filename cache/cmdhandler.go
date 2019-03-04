@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/httpcmd"
-	"vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
 type CleanCache struct {

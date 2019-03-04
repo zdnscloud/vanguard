@@ -1,11 +1,11 @@
 package filter
 
 import (
-	"vanguard/config"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
 
-	"vanguard/filter/ratelimit"
-	"vanguard/filter/srvfailedprotector"
+	"github.com/zdnscloud/vanguard/filter/ratelimit"
+	"github.com/zdnscloud/vanguard/filter/srvfailedprotector"
 )
 
 type PreFilter interface {

@@ -1,7 +1,7 @@
 package failforwarder
 
 import (
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 var (

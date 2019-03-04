@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"sort"
 	"testing"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/logger"
 
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
-	zn "vanguard/resolver/auth/zone"
+	zn "github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
 var dynamicZoneData []string = []string{

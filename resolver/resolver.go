@@ -1,15 +1,15 @@
 package resolver
 
 import (
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/resolver/auth"
-	"vanguard/resolver/chain"
-	"vanguard/resolver/fakeauth"
-	"vanguard/resolver/forwarder"
-	"vanguard/resolver/querysource"
-	"vanguard/resolver/recursor"
-	"vanguard/resolver/stub"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/resolver/auth"
+	"github.com/zdnscloud/vanguard/resolver/chain"
+	"github.com/zdnscloud/vanguard/resolver/fakeauth"
+	"github.com/zdnscloud/vanguard/resolver/forwarder"
+	"github.com/zdnscloud/vanguard/resolver/querysource"
+	"github.com/zdnscloud/vanguard/resolver/recursor"
+	"github.com/zdnscloud/vanguard/resolver/stub"
 )
 
 const (

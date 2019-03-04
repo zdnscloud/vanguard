@@ -3,8 +3,8 @@ package querysource
 import (
 	"sync"
 
-	"vanguard/config"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 var gQuerySourceManager *QuerySourceManager

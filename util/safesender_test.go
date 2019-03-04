@@ -9,7 +9,7 @@ import (
 
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
-	"vanguard/testutil"
+	"github.com/zdnscloud/vanguard/testutil"
 )
 
 func doParallelForward(server string, sender *SafeUDPSender, name string, count int) uint32 {

@@ -1,9 +1,9 @@
 package xfr
 
 import (
-	"vanguard/core"
-	"vanguard/resolver/auth"
-	"vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/resolver/auth"
+	"github.com/zdnscloud/vanguard/viewselector"
 )
 
 type XFRHandler struct {

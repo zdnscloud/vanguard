@@ -8,6 +8,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
+	"k8s.io/apimachinery/pkg/version"
+	"k8s.io/client-go/discovery"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
@@ -48,6 +50,7 @@ func New(config *rest.Config, options Options) (Client, error) {
 	}
 
 	return &client{
+		discoveryClient: discovery.NewDiscoveryClientForConfigOrDie(config),
 		typedClient: typedClient{
 			cache: clientCache{
 				config:         config,
@@ -71,6 +74,11 @@ var _ Client = &client{}
 type client struct {
 	typedClient        typedClient
 	unstructuredClient unstructuredClient
+	discoveryClient    *discovery.DiscoveryClient
+}
+
+func (c *client) ServerVersion() (*version.Info, error) {
+	return c.discoveryClient.ServerVersion()
 }
 
 func (c *client) Create(ctx context.Context, obj runtime.Object) error {

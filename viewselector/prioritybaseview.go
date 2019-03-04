@@ -5,7 +5,7 @@ import (
 	"sort"
 	"time"
 
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 type PriorityBaseView struct {

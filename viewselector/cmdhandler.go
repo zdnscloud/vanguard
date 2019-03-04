@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type UpdateView struct {

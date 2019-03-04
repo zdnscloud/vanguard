@@ -1,10 +1,10 @@
 package server
 
 import (
-	"vanguard/acl"
-	"vanguard/config"
-	"vanguard/httpcmd"
-	"vanguard/metrics"
+	"github.com/zdnscloud/vanguard/acl"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/metrics"
 )
 
 type Reconfig struct {

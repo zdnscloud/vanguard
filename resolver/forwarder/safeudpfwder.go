@@ -7,7 +7,7 @@ import (
 
 	"github.com/zdnscloud/g53"
 	"github.com/zdnscloud/g53/util"
-	vutil "vanguard/util"
+	vutil "github.com/zdnscloud/vanguard/util"
 )
 
 type SafeUDPFwder struct {

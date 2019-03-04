@@ -3,7 +3,7 @@ package srvfailedprotector
 import (
 	"sync/atomic"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type SrvFailedProtect struct {

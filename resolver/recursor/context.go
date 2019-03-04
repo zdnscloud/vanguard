@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/util"
+	"github.com/zdnscloud/vanguard/util"
 )
 
 type RecursorCtx struct {

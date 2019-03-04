@@ -5,7 +5,7 @@ import (
 
 	"github.com/zdnscloud/cement/log"
 	"github.com/zdnscloud/cement/slice"
-	"vanguard/config"
+	"github.com/zdnscloud/vanguard/config"
 )
 
 var globalLogger log.Logger

@@ -6,13 +6,13 @@ import (
 	"net"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/logger"
-	"vanguard/resolver"
-	"vanguard/resolver/querysource"
-	"vanguard/resolver/recursor"
-	view "vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver"
+	"github.com/zdnscloud/vanguard/resolver/querysource"
+	"github.com/zdnscloud/vanguard/resolver/recursor"
+	view "github.com/zdnscloud/vanguard/viewselector"
 )
 
 var (

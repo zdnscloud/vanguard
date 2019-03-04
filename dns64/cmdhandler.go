@@ -3,7 +3,7 @@ package dns64
 import (
 	"strings"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type PutDns64 struct {

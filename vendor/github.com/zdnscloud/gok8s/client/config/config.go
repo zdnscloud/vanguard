@@ -44,6 +44,10 @@ func GetConfig() (*rest.Config, error) {
 	return nil, fmt.Errorf("could not locate a kubeconfig")
 }
 
+func BuildConfig(conf []byte) (*rest.Config, error) {
+	return clientcmd.RESTConfigFromKubeConfig(conf)
+}
+
 func GetConfigOrDie() *rest.Config {
 	config, err := GetConfig()
 	if err != nil {

@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/zdnscloud/cement/slice"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type AddAcl struct {

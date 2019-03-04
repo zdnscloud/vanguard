@@ -2,7 +2,7 @@ package localdata
 
 import (
 	"github.com/zdnscloud/g53"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 func realQueryName(client *core.Client) *g53.Name {

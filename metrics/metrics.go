@@ -7,7 +7,7 @@ import (
 	"github.com/zdnscloud/g53"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 var gMetrics = newMetrics()

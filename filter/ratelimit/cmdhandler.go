@@ -7,7 +7,7 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type AddNameRateLimit struct {

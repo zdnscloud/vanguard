@@ -4,7 +4,7 @@ import (
 	//"github.com/zdnscloud/g53"
 
 	"github.com/zdnscloud/cement/domaintree"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 type ZoneBaseView struct {

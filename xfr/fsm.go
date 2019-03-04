@@ -3,8 +3,8 @@ package xfr
 import (
 	"github.com/zdnscloud/cement/fsm"
 	"github.com/zdnscloud/g53"
-	"vanguard/logger"
-	"vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
 
 	"errors"
 )

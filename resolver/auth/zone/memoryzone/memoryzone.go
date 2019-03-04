@@ -3,7 +3,7 @@ package memoryzone
 import (
 	"github.com/zdnscloud/g53"
 	"github.com/zdnscloud/g53/domaintree"
-	"vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
 const wildcardMark = domaintree.NF_USER1

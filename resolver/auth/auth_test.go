@@ -7,11 +7,11 @@ import (
 	"github.com/zdnscloud/cement/domaintree"
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/httpcmd"
-	"vanguard/logger"
-	"vanguard/resolver/auth/zone"
-	view "vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
+	view "github.com/zdnscloud/vanguard/viewselector"
 )
 
 func setupTestZone() *AuthDataSource {

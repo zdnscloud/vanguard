@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/acl"
-	"vanguard/logger"
-	"vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/acl"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
 const (

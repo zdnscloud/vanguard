@@ -3,7 +3,7 @@ package failforwarder
 import (
 	"fmt"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type AddFailForwarder struct {

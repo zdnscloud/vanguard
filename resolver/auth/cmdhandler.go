@@ -6,8 +6,8 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/httpcmd"
-	zn "vanguard/resolver/auth/zone"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	zn "github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
 type AddAuthZone struct {

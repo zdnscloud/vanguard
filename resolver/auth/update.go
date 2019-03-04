@@ -5,10 +5,10 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/core"
-	"vanguard/logger"
-	"vanguard/resolver/auth/zone"
-	view "vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/auth/zone"
+	view "github.com/zdnscloud/vanguard/viewselector"
 )
 
 func (ds *AuthDataSource) HandleUpdate(ctx *core.Context) {

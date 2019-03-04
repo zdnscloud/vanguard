@@ -3,8 +3,8 @@ package cache
 import (
 	"sync"
 
-	"vanguard/core"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 const defaultTaskChanBuf = 1024

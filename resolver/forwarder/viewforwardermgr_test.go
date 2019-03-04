@@ -5,10 +5,10 @@ import (
 
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/httpcmd"
-	"vanguard/logger"
-	view "vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
+	view "github.com/zdnscloud/vanguard/viewselector"
 )
 
 func TestViewFwderCreation(t *testing.T) {

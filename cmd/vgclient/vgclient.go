@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	"vanguard/cache"
-	"vanguard/httpcmd"
-	"vanguard/resolver/auth"
-	"vanguard/resolver/forwarder"
-	"vanguard/server"
+	"github.com/zdnscloud/vanguard/cache"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/resolver/auth"
+	"github.com/zdnscloud/vanguard/resolver/forwarder"
+	"github.com/zdnscloud/vanguard/server"
 )
 
 const (

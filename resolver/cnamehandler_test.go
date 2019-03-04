@@ -5,10 +5,10 @@ import (
 
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/logger"
-	"vanguard/resolver/chain"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/chain"
 )
 
 type dumbHander struct {

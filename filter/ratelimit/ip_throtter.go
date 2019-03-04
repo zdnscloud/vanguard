@@ -5,8 +5,8 @@ import (
 	"net"
 	"sync"
 
-	"vanguard/config"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 const maxIPAccessRecordCount = 5000

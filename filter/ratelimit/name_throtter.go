@@ -5,8 +5,8 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type NameThrottler struct {

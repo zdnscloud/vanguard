@@ -1,7 +1,7 @@
 package recursor
 
 import (
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 var (

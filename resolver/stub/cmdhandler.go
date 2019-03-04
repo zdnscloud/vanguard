@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/zdnscloud/g53"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type AddStubZone struct {

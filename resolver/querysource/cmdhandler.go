@@ -3,7 +3,7 @@ package querysource
 import (
 	"fmt"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 const DefaultViewForQuery = "*"

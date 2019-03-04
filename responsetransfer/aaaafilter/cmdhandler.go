@@ -3,7 +3,7 @@ package aaaafilter
 import (
 	"strings"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type PutAAAAFilter struct {

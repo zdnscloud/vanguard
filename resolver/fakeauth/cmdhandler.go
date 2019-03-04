@@ -1,8 +1,8 @@
 package fakeauth
 
 import (
-	"vanguard/httpcmd"
-	ld "vanguard/localdata"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	ld "github.com/zdnscloud/vanguard/localdata"
 )
 
 type LocalPolicyData struct {

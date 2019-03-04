@@ -1,8 +1,8 @@
 package ratelimit
 
 import (
-	"vanguard/config"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 type RateLimit struct {

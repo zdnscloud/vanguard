@@ -1,12 +1,12 @@
 package fakeauth
 
 import (
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/httpcmd"
-	ld "vanguard/localdata"
-	"vanguard/logger"
-	"vanguard/resolver/chain"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	ld "github.com/zdnscloud/vanguard/localdata"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/chain"
 )
 
 type FakeAuth struct {

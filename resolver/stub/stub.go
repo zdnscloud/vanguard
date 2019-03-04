@@ -7,14 +7,14 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/httpcmd"
-	"vanguard/logger"
-	"vanguard/resolver/chain"
-	"vanguard/resolver/querysource"
-	"vanguard/util"
-	view "vanguard/viewselector"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/chain"
+	"github.com/zdnscloud/vanguard/resolver/querysource"
+	"github.com/zdnscloud/vanguard/util"
+	view "github.com/zdnscloud/vanguard/viewselector"
 )
 
 const sendTimeout = 3 * time.Second

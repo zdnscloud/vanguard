@@ -4,10 +4,10 @@ import (
 	"net"
 	"sync/atomic"
 
-	github.com/zdnscloud/g53util "github.com/zdnscloud/g53/util"
-	"vanguard/config"
-	"vanguard/logger"
-	"vanguard/util"
+	g53util "github.com/zdnscloud/g53/util"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/util"
 )
 
 const (

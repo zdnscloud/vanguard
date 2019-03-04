@@ -2,7 +2,7 @@ package httpcmd
 
 import (
 	"github.com/zdnscloud/cement/reflector"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 type CmdHandler interface {

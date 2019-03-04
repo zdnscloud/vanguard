@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	ut "github.com/zdnscloud/cement/unittest"
-	"vanguard/config"
+	"github.com/zdnscloud/vanguard/config"
 )
 
 func TestForwarderLog(t *testing.T) {

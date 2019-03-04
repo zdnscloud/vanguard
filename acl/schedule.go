@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"vanguard/config"
+	"github.com/zdnscloud/vanguard/config"
 )
 
 var (

@@ -10,8 +10,6 @@ const (
 	DefaultMaxFileSize = 100 * 1000 * 1000 //100m byte
 )
 
-const DefaultFormat = "[%D %T] [%L] (%S) %M"
-
 type FileLogWriter struct {
 	rec chan *LogRecord
 	rot chan bool
@@ -60,10 +58,6 @@ func NewFileLogWriter(fname, format string, maxsize, maxfilecount int) (*FileLog
 
 	if maxsize <= 0 {
 		maxsize = DefaultMaxFileSize
-	}
-
-	if format == "" {
-		format = DefaultFormat
 	}
 
 	w := &FileLogWriter{

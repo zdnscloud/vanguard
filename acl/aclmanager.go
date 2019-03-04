@@ -5,9 +5,9 @@ import (
 	"strings"
 	"sync"
 
-	"vanguard/config"
-	"vanguard/httpcmd"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 const (

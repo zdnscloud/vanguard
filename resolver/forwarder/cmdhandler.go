@@ -3,7 +3,7 @@ package forwarder
 import (
 	"strings"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type ForwardZoneParam struct {

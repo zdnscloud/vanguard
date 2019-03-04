@@ -7,11 +7,11 @@ import (
 
 	"github.com/zdnscloud/g53"
 	"github.com/zdnscloud/g53/util"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/httpcmd"
-	"vanguard/logger"
-	"vanguard/metrics"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/metrics"
 )
 
 const (

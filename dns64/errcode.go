@@ -1,7 +1,7 @@
 package dns64
 
 import (
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 var (

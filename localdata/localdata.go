@@ -5,8 +5,8 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	"vanguard/core"
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type LocalData struct {

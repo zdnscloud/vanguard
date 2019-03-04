@@ -5,7 +5,7 @@ import (
 
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 func buildClient(view, name string, typ g53.RRType) *core.Client {

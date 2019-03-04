@@ -54,7 +54,7 @@ type Logger map[string]*Filter
 
 func NewDefaultLogger(lvl level, fmt string) Logger {
 	return Logger{
-		"stdout": &Filter{lvl, NewConsoleLogWriter("")},
+		"stdout": &Filter{lvl, NewConsoleLogWriter(fmt)},
 	}
 }
 

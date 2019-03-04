@@ -4,12 +4,12 @@ import (
 	"sync"
 	"time"
 
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/httpcmd"
-	"vanguard/logger"
-	"vanguard/resolver/querysource"
-	"vanguard/util"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
+	"github.com/zdnscloud/vanguard/resolver/querysource"
+	"github.com/zdnscloud/vanguard/util"
 )
 
 var (

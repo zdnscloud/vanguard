@@ -3,7 +3,7 @@ package forwarder
 import (
 	"time"
 
-	"vanguard/config"
+	"github.com/zdnscloud/vanguard/config"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"vanguard/config"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 type cmdService struct {

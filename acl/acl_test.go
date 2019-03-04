@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	ut "github.com/zdnscloud/cement/unittest"
-	"vanguard/config"
-	"vanguard/httpcmd"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 var logFile = "acl.log"

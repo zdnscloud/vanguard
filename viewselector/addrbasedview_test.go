@@ -5,11 +5,11 @@ import (
 	"testing"
 
 	ut "github.com/zdnscloud/cement/unittest"
-	"vanguard/acl"
-	"vanguard/config"
-	"vanguard/core"
-	"vanguard/httpcmd"
-	"vanguard/logger"
+	"github.com/zdnscloud/vanguard/acl"
+	"github.com/zdnscloud/vanguard/config"
+	"github.com/zdnscloud/vanguard/core"
+	"github.com/zdnscloud/vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/logger"
 )
 
 func TestAddrBaseView(t *testing.T) {

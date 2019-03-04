@@ -3,7 +3,7 @@ package localdata
 import (
 	"github.com/zdnscloud/g53"
 
-	"vanguard/core"
+	"github.com/zdnscloud/vanguard/core"
 )
 
 type LocalPolicy interface {

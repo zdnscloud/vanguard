@@ -3,7 +3,7 @@ package sortlist
 import (
 	"strings"
 
-	"vanguard/httpcmd"
+	"github.com/zdnscloud/vanguard/httpcmd"
 )
 
 type AddSortList struct {

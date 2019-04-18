@@ -7,12 +7,12 @@ import (
 
 	"github.com/zdnscloud/cement/domaintree"
 	"github.com/zdnscloud/g53"
-	corev1 "k8s.io/api/core/v1"
 	"github.com/zdnscloud/vanguard/config"
 	"github.com/zdnscloud/vanguard/core"
 	"github.com/zdnscloud/vanguard/resolver/auth"
 	"github.com/zdnscloud/vanguard/resolver/auth/zone"
 	"github.com/zdnscloud/vanguard/resolver/auth/zone/memoryzone"
+	corev1 "k8s.io/api/core/v1"
 )
 
 var (
@@ -51,7 +51,7 @@ func (a *Auth) reloadConfig(conf *config.VanguardConf) error {
 	return a.createReverseZone(&conf.Kubernetes)
 }
 
-func (a *Auth) createServiceZone(k8sCfg *config.Kubernetes) error {
+func (a *Auth) createServiceZone(k8sCfg *config.KubernetesConf) error {
 	z, err := a.createZone(k8sCfg.ClusterDomain, k8sCfg)
 	if err == nil {
 		a.serviceZone = z
@@ -70,7 +70,7 @@ func (a *Auth) createServiceZone(k8sCfg *config.Kubernetes) error {
 	return err
 }
 
-func (a *Auth) createReverseZone(k8sCfg *config.Kubernetes) error {
+func (a *Auth) createReverseZone(k8sCfg *config.KubernetesConf) error {
 	serviceReverseName, err := reverseZoneNameForNetwork(k8sCfg.ClusterServiceIPRange)
 	if err != nil {
 		return err
@@ -94,7 +94,7 @@ func (a *Auth) createReverseZone(k8sCfg *config.Kubernetes) error {
 	return err
 }
 
-func (a *Auth) createZone(origin string, k8sCfg *config.Kubernetes) (zone.Zone, error) {
+func (a *Auth) createZone(origin string, k8sCfg *config.KubernetesConf) (zone.Zone, error) {
 	n, err := g53.NameFromString(origin)
 	if err != nil {
 		return nil, err

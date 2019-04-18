@@ -11,6 +11,7 @@ import (
 	"github.com/zdnscloud/vanguard/config"
 	"github.com/zdnscloud/vanguard/core"
 	"github.com/zdnscloud/vanguard/dns64"
+	"github.com/zdnscloud/vanguard/echoip"
 	"github.com/zdnscloud/vanguard/failforwarder"
 	"github.com/zdnscloud/vanguard/filter"
 	"github.com/zdnscloud/vanguard/httpcmd"
@@ -48,6 +49,7 @@ const (
 	ModuleAAAAFilter    = "aaaa_filter"
 	ModuleHijack        = "hijack"
 	ModuleSortList      = "sort_list"
+	ModuleEchoIP        = "echo_ip"
 )
 
 func init() {
@@ -114,10 +116,12 @@ var supported_creators = map[string]ModuleCreator{
 	ModuleAAAAFilter:    responsetransfer.NewAAAAFilter,
 	ModuleHijack:        responsetransfer.NewHijack,
 	ModuleSortList:      responsetransfer.NewSortList,
+	ModuleEchoIP:        echoip.NewEchoip,
 }
 
 var moduleInOrder = []string{
 	ModuleQueryLog,
+	ModuleEchoIP,
 	ModuleKubernetes,
 	ModuleView,
 	ModuleFilter,

@@ -36,7 +36,8 @@ type VanguardConf struct {
 	Stub          []StubZoneInView      `yaml:"stub_zone"`
 	FailForwarder []FailForwarderInView `yaml:"fail_forwarder"`
 	DNS64         []DNS64InView         `yaml:"dns64"`
-	Kubernetes    Kubernetes            `yaml:"kubernetes"`
+	Kubernetes    KubernetesConf        `yaml:"kubernetes"`
+	EchoIP        EchoIPConf            `yaml:"echo_ip"`
 }
 
 type ServerConf struct {
@@ -236,11 +237,16 @@ type AAAAFilterInView struct {
 	Acls []string `yaml:"acls"`
 }
 
-type Kubernetes struct {
+type KubernetesConf struct {
 	ClusterDNSServer      string `yaml:"cluster_dns_server"`
 	ClusterDomain         string `yaml:"cluster_domain"`
 	ClusterCIDR           string `yaml:"cluster_cidr"`
 	ClusterServiceIPRange string `yaml:"cluster_service_ip_range"`
+}
+
+type EchoIPConf struct {
+	Zone  string   `yaml:"zone"`
+	Addrs []string `yaml:"addr"`
 }
 
 func (vc *ViewConf) GetViewWeight() map[string]int {

@@ -78,11 +78,11 @@ data:
         forwarder:
             forward_zone_for_view:
             - view: "default"
-            zones:
-            - name: "cn"
-              forward_style: "rtt"
-              forwarders:
-              - 114.114.114.114:53
+              zones:
+              - name: "cn"
+                forward_style: "rtt"
+                forwarders:
+                - 114.114.114.114:53
 
         recursor:
         - view: default

@@ -38,18 +38,35 @@ func (e *EchoIP) HandleQuery(ctx *core.Context) {
 		return
 	}
 
-	if qname.LabelCount() != e.zone.LabelCount()+4 || qtype != g53.RR_A {
+	if qtype != g53.RR_A {
 		e.returnNXRRset(client)
 		return
 	}
 
-	ip, _ := qname.Split(0, 4)
-	a, err := g53.AFromString(ip.String(true))
+	ip := e.extractIpaddress(qname)
+	if ip == "" {
+		e.returnNXRRset(client)
+		return
+	}
+
+	a, err := g53.AFromString(ip)
 	if err == nil {
 		e.returnA(qname, a, client)
 	} else {
 		e.returnNXRRset(client)
 	}
+}
+
+func (e *EchoIP) extractIpaddress(qname *g53.Name) string {
+	relativeLabelCount := qname.LabelCount() - e.zone.LabelCount()
+	if relativeLabelCount == 4 {
+		ip, _ := qname.Split(0, 4)
+		return ip.String(true)
+	} else if relativeLabelCount == 5 {
+		ip, _ := qname.Split(1, 4)
+		return ip.String(true)
+	}
+	return ""
 }
 
 func (e *EchoIP) returnNXRRset(client *core.Client) {

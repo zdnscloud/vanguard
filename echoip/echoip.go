@@ -9,6 +9,7 @@ import (
 type EchoIP struct {
 	core.DefaultHandler
 	zone *g53.Name
+	soa  *g53.RRset
 	ns   *g53.RRset
 	glue *g53.RRset
 }
@@ -20,7 +21,7 @@ func NewEchoip(conf *config.VanguardConf) core.DNSQueryHandler {
 }
 
 func (e *EchoIP) ReloadConfig(conf *config.VanguardConf) {
-	e.generateNS(conf.EchoIP.Zone, conf.EchoIP.Addrs)
+	e.generateNSAndSOA(conf.EchoIP.Zone, conf.EchoIP.Addrs)
 }
 
 func (e *EchoIP) HandleQuery(ctx *core.Context) {
@@ -38,14 +39,24 @@ func (e *EchoIP) HandleQuery(ctx *core.Context) {
 		return
 	}
 
+	if qname.Equals(e.zone) && qtype == g53.RR_SOA {
+		e.returnSOA(client)
+		return
+	}
+
 	if qtype != g53.RR_A {
-		e.returnNXRRset(client)
+		e.returnEmptyAnswer(client)
+		return
+	}
+
+	if qname.Equals(e.glue.Name) {
+		e.returnGlue(client)
 		return
 	}
 
 	ip := e.extractIpaddress(qname)
 	if ip == "" {
-		e.returnNXRRset(client)
+		e.returnEmptyAnswer(client)
 		return
 	}
 
@@ -53,7 +64,7 @@ func (e *EchoIP) HandleQuery(ctx *core.Context) {
 	if err == nil {
 		e.returnA(qname, a, client)
 	} else {
-		e.returnNXRRset(client)
+		e.returnEmptyAnswer(client)
 	}
 }
 
@@ -69,12 +80,11 @@ func (e *EchoIP) extractIpaddress(qname *g53.Name) string {
 	return ""
 }
 
-func (e *EchoIP) returnNXRRset(client *core.Client) {
+func (e *EchoIP) returnEmptyAnswer(client *core.Client) {
 	response := client.Request.MakeResponse()
 	response.Header.SetFlag(g53.FLAG_AA, true)
-	response.Header.Rcode = g53.R_NXRRSET
-	response.AddRRset(g53.AuthSection, e.ns)
-	response.AddRRset(g53.AdditionalSection, e.glue)
+	response.Header.Rcode = g53.R_NOERROR
+	response.AddRRset(g53.AuthSection, e.soa)
 	client.Response = response
 }
 
@@ -83,6 +93,23 @@ func (e *EchoIP) returnNS(client *core.Client) {
 	response.Header.SetFlag(g53.FLAG_AA, true)
 	response.AddRRset(g53.AnswerSection, e.ns)
 	response.AddRRset(g53.AdditionalSection, e.glue)
+	client.Response = response
+}
+
+func (e *EchoIP) returnSOA(client *core.Client) {
+	response := client.Request.MakeResponse()
+	response.Header.SetFlag(g53.FLAG_AA, true)
+	response.AddRRset(g53.AnswerSection, e.soa)
+	response.AddRRset(g53.AuthSection, e.ns)
+	response.AddRRset(g53.AdditionalSection, e.glue)
+	client.Response = response
+}
+
+func (e *EchoIP) returnGlue(client *core.Client) {
+	response := client.Request.MakeResponse()
+	response.Header.SetFlag(g53.FLAG_AA, true)
+	response.AddRRset(g53.AnswerSection, e.glue)
+	response.AddRRset(g53.AuthSection, e.ns)
 	client.Response = response
 }
 
@@ -95,7 +122,7 @@ func (e *EchoIP) returnA(qname *g53.Name, a g53.Rdata, client *core.Client) {
 	client.Response = response
 }
 
-func (e *EchoIP) generateNS(zone string, addrs []string) {
+func (e *EchoIP) generateNSAndSOA(zone string, addrs []string) {
 	e.zone = g53.NameFromStringUnsafe(zone)
 	nsName := g53.NameFromStringUnsafe("ns." + zone)
 	e.ns = &g53.RRset{
@@ -120,5 +147,22 @@ func (e *EchoIP) generateNS(zone string, addrs []string) {
 		Class:  g53.CLASS_IN,
 		Ttl:    g53.RRTTL(3600),
 		Rdatas: rdatas,
+	}
+
+	e.soa = &g53.RRset{
+		Name:  e.zone,
+		Type:  g53.RR_SOA,
+		Class: g53.CLASS_IN,
+		Ttl:   g53.RRTTL(3600),
+		Rdatas: []g53.Rdata{
+			&g53.SOA{
+				MName:   nsName,
+				RName:   g53.NameFromStringUnsafe("root." + zone),
+				Serial:  1000,
+				Refresh: 7200,
+				Retry:   3600,
+				Expire:  2419200,
+				Minimum: 21600,
+			}},
 	}
 }

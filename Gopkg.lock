@@ -231,7 +231,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:690cd103a39184f2f7f74240941bcee1eecd45d87528a38fc1f2e4fad67c1762"
+  digest = "1:659e624a0330168779a1fcb1e17aa2705bb08aad63366858f6600bd592414565"
   name = "github.com/zdnscloud/g53"
   packages = [
     ".",
@@ -239,7 +239,7 @@
     "util",
   ]
   pruneopts = "UT"
-  revision = "bf6c958cc80e5b1c9672b455660471ce8899809b"
+  revision = "e59e91c2d63e28bfba62e3cede2e06b4418ff494"
 
 [[projects]]
   branch = "master"

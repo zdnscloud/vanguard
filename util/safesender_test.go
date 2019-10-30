@@ -55,7 +55,7 @@ func TestSafeUDPFwderFwdLocal(t *testing.T) {
 func TestSafeUDPFwderFwdPublicDNS(t *testing.T) {
 	publicDNSServer := "114.114.114.114:53"
 	sender, _ := NewSafeUDPSender("", defaultTimeout)
-	errCount := doParallelForward(publicDNSServer, sender, "www.knet.cn.", 40)
+	errCount := doParallelForward(publicDNSServer, sender, "www.knet.cn.", 10)
 	ut.Equal(t, errCount, uint32(0))
 }
 

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"sort"
 	"testing"
-	"github.com/zdnscloud/vanguard/logger"
 
 	ut "github.com/zdnscloud/cement/unittest"
 	"github.com/zdnscloud/g53"
+	"github.com/zdnscloud/vanguard/logger"
 	zn "github.com/zdnscloud/vanguard/resolver/auth/zone"
 )
 
@@ -84,13 +84,8 @@ func TestDynamicClean(t *testing.T) {
 	})
 	tx.Commit()
 
-	//remove leaf first, then non-termianl became empty
-	dzone.MemoryZone.removeEmptyNode()
-	dzone.MemoryZone.removeEmptyNode()
 	ut.Equal(t, dzone.DomainCount(), 6)
-
 	zoneHasARRset(t, dzone, "f.cn.", []string{"2.2.2.2"})
-	dzone.Clean()
 }
 
 func TestTransaction(t *testing.T) {
@@ -133,6 +128,4 @@ func TestTransaction(t *testing.T) {
 	dzone.DeleteRRset(tx, rrset)
 	tx.Commit()
 	zoneHasARRset(t, dzone, "a.cn.", []string{})
-
-	dzone.Clean()
 }

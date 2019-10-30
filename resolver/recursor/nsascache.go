@@ -153,10 +153,6 @@ func (nc *NsasCache) addNameServer(glue *g53.RRset, trustLevel TrustLevel) {
 func (nc *NsasCache) EnforceMemoryLimit() {
 	nc.zonesLock.Lock()
 	defer nc.zonesLock.Unlock()
-	if nc.zones.EmptyLeafNodeRatio() > EmptyNodeWaterMark {
-		nc.zones.RemoveEmptyLeafNode()
-	}
-
 	zoneCount := nc.zoneCount()
 	if zoneCount <= nc.maxCacheSize {
 		return

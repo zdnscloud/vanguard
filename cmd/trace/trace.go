@@ -28,7 +28,7 @@ func init() {
 func main() {
 	flag.Parse()
 
-	logger.UseDefaultLogger("info")
+	logger.UseDefaultLogger("debug")
 	conf := &config.VanguardConf{}
 	conf.Recursor = []config.RecursorInView{
 		config.RecursorInView{
@@ -39,7 +39,7 @@ func main() {
 	view.NewSelectorMgr(conf)
 	querysource.NewQuerySourceManager(conf)
 
-	r := resolver.NewCNameHandler(recursor.NewRecursor(conf))
+	r := resolver.NewCNameHandler(recursor.NewRecursor(conf), conf)
 	r.ReloadConfig(conf)
 
 	qname, err := g53.NameFromString(name)

@@ -27,6 +27,7 @@ func doParallelForward(fwder SafeFwder, name string, count int) uint32 {
 			query := g53.MakeQuery(qname, g53.RR_A, 1024, false)
 			_, _, err := fwder.Forward(query)
 			if err != nil {
+				fmt.Printf("err: %v\n", err.Error())
 				atomic.AddUint32(&errCount, 1)
 			}
 			wg.Done()
@@ -59,7 +60,7 @@ func TestSafeUDPFwderFwdPublicDNS(t *testing.T) {
 	fwder, _ := NewSafeUDPFwder(publicDNSServer, defaultTimeout, 10*time.Second)
 	err := fwder.SetQuerySource("")
 	ut.Assert(t, err == nil, "set query source should succeed")
-	errCount := doParallelForward(fwder, "www.knet.cn.", 40)
+	errCount := doParallelForward(fwder, "www.knet.cn.", 10)
 	ut.Equal(t, errCount, uint32(0))
 	ut.Equal(t, fwder.IsDown(), false)
 }

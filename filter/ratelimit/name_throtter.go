@@ -50,9 +50,12 @@ func (t *NameThrottler) IsNameAllowed(view string, name *g53.Name) bool {
 
 	if match == domaintree.ClosestEncloser {
 		for parents.IsEmpty() == false {
-			parent_record := parents.Top().Data().(*NameAccessRecord)
-			if parent_record.match_type == zoneMatch {
-				return parent_record.IsAccessAllowed()
+			data := parents.Top().Data()
+			if data != nil {
+				parent_record := data.(*NameAccessRecord)
+				if parent_record.match_type == zoneMatch {
+					return parent_record.IsAccessAllowed()
+				}
 			}
 			parents.Pop()
 		}

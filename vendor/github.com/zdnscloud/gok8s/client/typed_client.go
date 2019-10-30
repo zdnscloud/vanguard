@@ -2,13 +2,20 @@ package client
 
 import (
 	"context"
+	"time"
 
 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/client-go/rest"
 )
 
 type typedClient struct {
 	cache      clientCache
 	paramCodec runtime.ParameterCodec
+}
+
+func (c *typedClient) RestClientForObject(obj runtime.Object, timeout time.Duration) (rest.Interface, error) {
+	return c.cache.newRestClient(obj, timeout)
 }
 
 func (c *typedClient) Create(ctx context.Context, obj runtime.Object) error {
@@ -35,6 +42,21 @@ func (c *typedClient) Update(ctx context.Context, obj runtime.Object) error {
 		Resource(o.resource()).
 		Name(o.GetName()).
 		Body(obj).
+		Context(ctx).
+		Do().
+		Into(obj)
+}
+
+func (c *typedClient) Patch(ctx context.Context, obj runtime.Object, typ types.PatchType, data []byte) error {
+	o, err := c.cache.getObjMeta(obj)
+	if err != nil {
+		return err
+	}
+	return o.Patch(typ).
+		NamespaceIfScoped(o.GetNamespace(), o.isNamespaced()).
+		Resource(o.resource()).
+		Name(o.GetName()).
+		Body(data).
 		Context(ctx).
 		Do().
 		Into(obj)

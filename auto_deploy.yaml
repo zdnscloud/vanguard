@@ -65,7 +65,6 @@ spec:
       labels:
         app: user-dns
     spec:
-      serviceAccountName: vanguard
       containers:
       - name: vanguard
         image: zdnscloud/vanguard:v0.1

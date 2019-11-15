@@ -202,7 +202,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:87bf419c1d4f8231a898b1321fa04c118f12e7946c3f193e9216df62acdf61cb"
+  digest = "1:3f0c53571e30d516f149cd112b68f26d08d7318f94f1300c800e3a214b32b612"
   name = "github.com/zdnscloud/cement"
   packages = [
     "configure",
@@ -226,7 +226,7 @@
     "workerpool",
   ]
   pruneopts = "UT"
-  revision = "28c1280e43f239c7b6864ec1c19215a86dcae3f8"
+  revision = "e70d68aebdadfacf1a5168fb29b1f5554f977966"
 
 [[projects]]
   branch = "master"

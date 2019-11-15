@@ -21,7 +21,7 @@ var (
 	RequestCountByView = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: Namespace,
 		Subsystem: Subsystem,
-		Name:      "request_count_by_view_total",
+		Name:      "request_count_by_view",
 		Help:      "Counter of DNS requests made per view.",
 	}, []string{"module", "view"})
 
@@ -35,7 +35,7 @@ var (
 	ResponseCountByView = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: Namespace,
 		Subsystem: Subsystem,
-		Name:      "response_count_by_view_total",
+		Name:      "response_count_by_view",
 		Help:      "Counter of DNS responses made per view.",
 	}, []string{"module", "view"})
 
@@ -49,7 +49,7 @@ var (
 	UpdateCountByView = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: Namespace,
 		Subsystem: Subsystem,
-		Name:      "update_count_by_view_total",
+		Name:      "update_count_by_view",
 		Help:      "Counter of DNS update made per view.",
 	}, []string{"module", "view"})
 
@@ -77,7 +77,7 @@ var (
 	CacheSizeByView = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Namespace: Namespace,
 		Subsystem: Subsystem,
-		Name:      "cache_size_by_view_total",
+		Name:      "cache_size_by_view",
 		Help:      "The number of elements in the cache made per view.",
 	}, []string{"module", "view"})
 
@@ -91,7 +91,7 @@ var (
 	CacheHitsByView = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: Namespace,
 		Subsystem: Subsystem,
-		Name:      "cache_hits_by_view_total",
+		Name:      "cache_hits_by_view",
 		Help:      "The count of cache hits per view.",
 	}, []string{"module", "view"})
 )

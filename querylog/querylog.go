@@ -3,6 +3,7 @@ package querylog
 import (
 	"bytes"
 	"github.com/zdnscloud/cement/log"
+	l4g "github.com/zdnscloud/cement/log/log4go"
 	"github.com/zdnscloud/g53"
 	"strconv"
 	"sync"
@@ -41,10 +42,10 @@ func (l *QueryLogger) ReloadConfig(conf *config.VanguardConf) {
 
 	l.logExt = conf.Logger.Querylog.Extension
 	if conf.Logger.Querylog.Path == "" {
-		l.filelog = log.NewLog4jConsoleLoggerWithFmt(log.Info, queryLogFormat)
+		l.filelog = log.NewLog4jConsoleLoggerWithFmt(log.Info, l4g.NewDefaultFormater(queryLogFormat))
 	} else {
 		qlog, err := log.NewLog4jLoggerWithFmt(conf.Logger.Querylog.Path, log.Info,
-			conf.Logger.Querylog.FileSize, conf.Logger.Querylog.Versions, queryLogFormat)
+			conf.Logger.Querylog.FileSize, conf.Logger.Querylog.Versions, l4g.NewDefaultFormater(queryLogFormat))
 		if err != nil {
 			panic("failed to create querylog" + err.Error())
 		}

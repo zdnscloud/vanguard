@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/zdnscloud/g53"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/zdnscloud/g53"
 	"github.com/zdnscloud/vanguard/core"
 )
 
@@ -28,12 +28,18 @@ func newMetrics() *Metrics {
 	}
 
 	mt.reg.MustRegister(RequestCount)
-	mt.reg.MustRegister(RequestDuration)
 	mt.reg.MustRegister(ResponseCount)
 	mt.reg.MustRegister(UpdateCount)
 	mt.reg.MustRegister(QPS)
 	mt.reg.MustRegister(CacheSize)
 	mt.reg.MustRegister(CacheHits)
+
+	mt.reg.MustRegister(RequestCountByView)
+	mt.reg.MustRegister(ResponseCountByView)
+	mt.reg.MustRegister(UpdateCountByView)
+	mt.reg.MustRegister(QPSByView)
+	mt.reg.MustRegister(CacheSizeByView)
+	mt.reg.MustRegister(CacheHitsByView)
 
 	return mt
 }
@@ -50,7 +56,11 @@ func Run() {
 		case <-timer.C:
 		}
 		for view, counter := range gMetrics.viewQps {
-			QPS.WithLabelValues("server", view).Set(float64(counter.Count()))
+			if view == TotalView {
+				QPS.WithLabelValues("server").Set(float64(counter.Count()))
+			} else {
+				QPSByView.WithLabelValues("server", view).Set(float64(counter.Count()))
+			}
 			counter.Clear()
 		}
 	}
@@ -73,26 +83,25 @@ func RecordMetrics(client core.Client) {
 	if client.Request.Header.Opcode == g53.OP_QUERY {
 		recordQps(TotalView)
 		recordQps(client.View)
-		RequestCount.WithLabelValues("server", TotalView).Inc()
-		RequestCount.WithLabelValues("server", client.View).Inc()
+		RequestCount.WithLabelValues("server").Inc()
+		RequestCountByView.WithLabelValues("server", client.View).Inc()
 		if client.Response != nil {
-			ResponseCount.WithLabelValues("server", client.View).Inc()
-			ResponseCount.WithLabelValues("server", TotalView).Inc()
+			ResponseCount.WithLabelValues("server").Inc()
+			ResponseCountByView.WithLabelValues("server", client.View).Inc()
 		}
 	} else if client.Request.Header.Opcode == g53.OP_UPDATE {
 		if client.Response != nil {
-			UpdateCount.WithLabelValues("server", TotalView).Inc()
+			UpdateCount.WithLabelValues("server").Inc()
 			if client.View != "" {
-				UpdateCount.WithLabelValues("server", client.View).Inc()
+				UpdateCountByView.WithLabelValues("server", client.View).Inc()
 			}
 		}
 	}
 }
 
 func recordQps(view string) {
-	var counter *Counter
-	var ok bool
-	if counter, ok = gMetrics.viewQps[view]; ok == false {
+	counter, ok := gMetrics.viewQps[view]
+	if ok == false {
 		counter = newCounter()
 		gMetrics.viewQps[view] = counter
 	}
@@ -101,11 +110,11 @@ func recordQps(view string) {
 }
 
 func RecordCacheHit(view string) {
-	CacheHits.WithLabelValues("cache", view).Inc()
-	CacheHits.WithLabelValues("cache", TotalView).Inc()
+	CacheHits.WithLabelValues("cache").Inc()
+	CacheHitsByView.WithLabelValues("cache", view).Inc()
 }
 
 func RecordCacheSize(view string, size int, totalSize int) {
-	CacheSize.WithLabelValues("cache", view).Set(float64(size))
-	CacheSize.WithLabelValues("cache", TotalView).Set(float64(totalSize))
+	CacheSize.WithLabelValues("cache").Set(float64(totalSize))
+	CacheSizeByView.WithLabelValues("cache", view).Set(float64(size))
 }

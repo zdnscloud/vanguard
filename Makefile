@@ -19,9 +19,13 @@ install:
 	cd cmd/vanguard && go install 
 
 docker:
-	docker build -t zdnscloud/vanguard:v0.1 .
+	docker build -t zdnscloud/vanguard:v0.2 .
 	docker image prune -f
-	docker push zdnscloud/vanguard:v0.1
+	docker push zdnscloud/vanguard:v0.2
+
+build-image:
+	docker build -t zdnscloud/vanguard:v0.2 --build-arg version=${VERSION} --build-arg buildtime=${BUILD} .
+	docker image prune -f
 
 clean:
 	rm -rf vanguard

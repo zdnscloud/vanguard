@@ -2,6 +2,7 @@ package metrics
 
 import (
 	"net/http"
+	"sync"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -18,6 +19,7 @@ type Metrics struct {
 	reg      *prometheus.Registry
 	viewQps  map[string]*Counter
 	stopChan chan struct{}
+	lock     sync.RWMutex
 }
 
 func newMetrics() *Metrics {
@@ -55,6 +57,7 @@ func Run() {
 			return
 		case <-timer.C:
 		}
+		gMetrics.lock.RLock()
 		for view, counter := range gMetrics.viewQps {
 			if view == TotalView {
 				QPS.WithLabelValues("server").Set(float64(counter.Count()))
@@ -63,6 +66,7 @@ func Run() {
 			}
 			counter.Clear()
 		}
+		gMetrics.lock.RUnlock()
 	}
 }
 
@@ -100,12 +104,14 @@ func RecordMetrics(client core.Client) {
 }
 
 func recordQps(view string) {
+	gMetrics.lock.Lock()
 	counter, ok := gMetrics.viewQps[view]
 	if ok == false {
 		counter = newCounter()
 		gMetrics.viewQps[view] = counter
 	}
 
+	gMetrics.lock.Unlock()
 	counter.Inc()
 }
 

@@ -2,63 +2,78 @@ package metrics
 
 import (
 	"net/http"
-	"sync"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+
 	"github.com/zdnscloud/g53"
+	"github.com/zdnscloud/vanguard/config"
 	"github.com/zdnscloud/vanguard/core"
 )
 
-var gMetrics = newMetrics()
+const (
+	DefaultView = "default"
+	TotalView   = "any"
+)
 
-const TotalView = "any"
+var gMetrics *Metrics
 
 type Metrics struct {
 	reg      *prometheus.Registry
 	viewQps  map[string]*Counter
 	stopChan chan struct{}
-	lock     sync.RWMutex
 }
 
-func newMetrics() *Metrics {
-	mt := &Metrics{
+func NewMetrics(conf *config.VanguardConf) *Metrics {
+	gMetrics = &Metrics{
 		reg:      prometheus.NewRegistry(),
-		viewQps:  make(map[string]*Counter),
 		stopChan: make(chan struct{}),
 	}
 
-	mt.reg.MustRegister(RequestCount)
-	mt.reg.MustRegister(ResponseCount)
-	mt.reg.MustRegister(UpdateCount)
-	mt.reg.MustRegister(QPS)
-	mt.reg.MustRegister(CacheSize)
-	mt.reg.MustRegister(CacheHits)
+	gMetrics.reg.MustRegister(RequestCount)
+	gMetrics.reg.MustRegister(ResponseCount)
+	gMetrics.reg.MustRegister(UpdateCount)
+	gMetrics.reg.MustRegister(QPS)
+	gMetrics.reg.MustRegister(CacheSize)
+	gMetrics.reg.MustRegister(CacheHits)
 
-	mt.reg.MustRegister(RequestCountByView)
-	mt.reg.MustRegister(ResponseCountByView)
-	mt.reg.MustRegister(UpdateCountByView)
-	mt.reg.MustRegister(QPSByView)
-	mt.reg.MustRegister(CacheSizeByView)
-	mt.reg.MustRegister(CacheHitsByView)
+	gMetrics.reg.MustRegister(RequestCountByView)
+	gMetrics.reg.MustRegister(ResponseCountByView)
+	gMetrics.reg.MustRegister(UpdateCountByView)
+	gMetrics.reg.MustRegister(QPSByView)
+	gMetrics.reg.MustRegister(CacheSizeByView)
+	gMetrics.reg.MustRegister(CacheHitsByView)
 
-	return mt
+	gMetrics.ReloadConfig(conf)
+	return gMetrics
 }
 
-func Run() {
+func GetMetrics() *Metrics {
+	return gMetrics
+}
+
+func (m *Metrics) ReloadConfig(conf *config.VanguardConf) {
+	m.viewQps = make(map[string]*Counter)
+	m.viewQps[DefaultView] = newCounter()
+	m.viewQps[TotalView] = newCounter()
+	for _, viewAcl := range conf.Views.ViewAcls {
+		m.viewQps[viewAcl.View] = newCounter()
+	}
+}
+
+func (m *Metrics) Run() {
 	timer := time.NewTicker(1 * time.Second)
 	defer timer.Stop()
 
 	for {
 		select {
-		case <-gMetrics.stopChan:
-			gMetrics.stopChan <- struct{}{}
+		case <-m.stopChan:
+			m.stopChan <- struct{}{}
 			return
 		case <-timer.C:
 		}
-		gMetrics.lock.RLock()
-		for view, counter := range gMetrics.viewQps {
+		for view, counter := range m.viewQps {
 			if view == TotalView {
 				QPS.WithLabelValues("server").Set(float64(counter.Count()))
 			} else {
@@ -66,14 +81,12 @@ func Run() {
 			}
 			counter.Clear()
 		}
-		gMetrics.lock.RUnlock()
 	}
 }
 
-func Stop() {
-	gMetrics.stopChan <- struct{}{}
-	<-gMetrics.stopChan
-	gMetrics.viewQps = make(map[string]*Counter)
+func (m *Metrics) Stop() {
+	m.stopChan <- struct{}{}
+	<-m.stopChan
 }
 
 func Handler() func(w http.ResponseWriter, r *http.Request) {
@@ -104,15 +117,9 @@ func RecordMetrics(client core.Client) {
 }
 
 func recordQps(view string) {
-	gMetrics.lock.Lock()
-	counter, ok := gMetrics.viewQps[view]
-	if ok == false {
-		counter = newCounter()
-		gMetrics.viewQps[view] = counter
+	if counter, ok := gMetrics.viewQps[view]; ok {
+		counter.Inc()
 	}
-
-	gMetrics.lock.Unlock()
-	counter.Inc()
 }
 
 func RecordCacheHit(view string) {

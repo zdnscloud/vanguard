@@ -1,6 +1,8 @@
 package server
 
 import (
+	"fmt"
+
 	"github.com/zdnscloud/vanguard/acl"
 	"github.com/zdnscloud/vanguard/config"
 	"github.com/zdnscloud/vanguard/httpcmd"
@@ -37,7 +39,7 @@ func (s *Server) stop() {
 func (s *Server) HandleCmd(cmd httpcmd.Command) (interface{}, *httpcmd.Error) {
 	switch cmd.(type) {
 	case *Reconfig:
-		metrics.Stop()
+		metrics.GetMetrics().Stop()
 		acl.GetAclManager().Stop()
 		s.stop()
 		s.conf.Reload()
@@ -50,7 +52,8 @@ func (s *Server) HandleCmd(cmd httpcmd.Command) (interface{}, *httpcmd.Error) {
 			h = h.Next()
 		}
 
-		go metrics.Run()
+		metrics.GetMetrics().ReloadConfig(s.conf)
+		go metrics.GetMetrics().Run()
 		s.startHandlerRoutine(s.handlerRoutineCount)
 		return nil, nil
 	case *Stop:

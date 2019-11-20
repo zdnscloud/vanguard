@@ -91,7 +91,7 @@ func main() {
 		panic("create server failed:" + err.Error())
 	}
 
-	go metrics.Run()
+	go metrics.NewMetrics(conf).Run()
 	go httpcmd.NewCmdService(conf).Run()
 	server.Run()
 	signal.WaitForInterrupt(func() {

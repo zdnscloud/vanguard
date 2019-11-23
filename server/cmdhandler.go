@@ -1,8 +1,6 @@
 package server
 
 import (
-	"fmt"
-
 	"github.com/zdnscloud/vanguard/acl"
 	"github.com/zdnscloud/vanguard/config"
 	"github.com/zdnscloud/vanguard/httpcmd"

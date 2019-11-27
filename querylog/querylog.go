@@ -172,6 +172,8 @@ func (l *QueryLogger) LogWrite(client core.Client) {
 		} else {
 			msgBuffer.WriteString(" -")
 		}
+
+		//no signature
 		msgBuffer.WriteString(" NS")
 		if client.Response.Edns != nil {
 			msgBuffer.WriteString(" E")
@@ -185,6 +187,7 @@ func (l *QueryLogger) LogWrite(client core.Client) {
 			msgBuffer.WriteString(" NT")
 		}
 
+		//no do bit set
 		msgBuffer.WriteString(" ND")
 		if set := client.Response.Header.GetFlag(g53.FLAG_CD); set {
 			msgBuffer.WriteString(" C")
